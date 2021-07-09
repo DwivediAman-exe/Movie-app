@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+{% block content %}
+<h3 class="text-center mt-5 mb-5">Online Movie Application</h3>
+
+<div class="row mb-5">
+{% for m in movie %}
+	<div class="col-sm mb-4">
+		<div class="card" style="width: 18rem; height: 100%;">
+			<img src="https://img.youtube.com/vi/{{m.trailer}}/maxresdefault.jpg" class="card-img-top" alt="img">
+			<div class="card-body">
+				<h5 class="card-title">{{m.name}}</h5>
+				{% if m.start > 3 %}
+				<span class="badge badge-info pl-2 pr-2 float-right">{{m.year}}</span>
+				<span class="badge pl-2 pr-2 badge-danger mb-2">Hot</span>
+				{% else %}
+				<span class="badge pl-2 pr-2 badge-warning mb-2">Just Nice</span>
+				{% endif %}
+				<p class="card-text">{{m.description}}
+				</p><a href="{% url 'movie' m.id %}" class="btn btn-primary btn-block">Trailer</a>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+</div>
+
+{% endblock %}
